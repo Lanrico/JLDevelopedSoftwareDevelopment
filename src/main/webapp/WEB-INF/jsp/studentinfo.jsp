@@ -5,13 +5,13 @@ import="com.example.demo.model.*"%>
 	<title>Student Information</title>
 </head>
 <%
-	UserTable user=(UserTable)session.getAttribute("user");
-	StudentTable stu=user.getStudent();
+	UserTable0 user=(UserTable0)session.getAttribute("user");
+	StudentTable0 stu=user.getStudent();
 	String studentname=stu.getStudentname();
 	String gender=stu.getGender();
 	String dateofbirth=stu.getDateofbirth();
 	Integer age=stu.getAge();
-	MajorTable major=stu.getMajor();
+	MajorTable0 major=stu.getMajor();
 	String majorname=major.getMajorname();
 %>
 <body bgcolor="#D9DFAA">

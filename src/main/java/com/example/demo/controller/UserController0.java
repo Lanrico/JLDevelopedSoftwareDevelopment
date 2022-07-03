@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.model.*;
 import com.example.demo.DAO.*;
 @RestController
-public class UserController {
+public class UserController0 {
 	@Autowired
-	private UserTableDAO userDAO;
+	private UserTableDAO0 userDAO;
 	@Autowired
-	private StudentTableDAO studentDAO;
+	private StudentTableDAO0 studentDAO;
 	@Autowired
-	private MajorTableDAO majorDAO;
+	private MajorTableDAO0 majorDAO;
 	@Autowired
-	private ClassTableDAO classDAO;
+	private ClassTableDAO0 classDAO;
 	@PostMapping("/user/validate")
 	public void login(String username, String password, HttpSession session, HttpServletResponse response) throws IOException {	
-		UserTable user=userDAO.findByUsernameAndPassword(username,password);
+		UserTable0 user=userDAO.findByUsernameAndPassword(username,password);
 		if(user==null)
 		{
 			response.sendRedirect("http://localhost:8080/fail.html");
@@ -36,10 +33,10 @@ public class UserController {
 	}
 	@GetMapping("/adduser")
 	public String addUser() {
-		UserTable user=new UserTable();
+		UserTable0 user=new UserTable0();
 		user.setUsername("new_user");
 		user.setPassword("new_user");
-		user.setStudent(new StudentTable());
+		user.setStudent(new StudentTable0());
 		user.getStudent().setUser(user);
 		user.getStudent().setStudentname("new_name");
 		userDAO.save(user);
@@ -47,14 +44,14 @@ public class UserController {
     }
 	@GetMapping("/deleteuser")
 	public String deleteUser() {
-		UserTable user=userDAO.findByUsernameAndPassword("new_user","new_user");
+		UserTable0 user=userDAO.findByUsernameAndPassword("new_user","new_user");
 		userDAO.delete(user);
 		return "Delete Successful";
     }
 	@GetMapping("/findallstudentsbymajor")
 	public String findallstudentsbymajor() {
-		MajorTable major=majorDAO.findByMajorname("SE");
-		Iterator<StudentTable> it = major.getStudents().iterator();  
+		MajorTable0 major=majorDAO.findByMajorname("SE");
+		Iterator<StudentTable0> it = major.getStudents().iterator();
 		String studentnames="";
 		while (it.hasNext()) {  
 		  studentnames += (it.next().getStudentname()+" ");   
@@ -63,8 +60,8 @@ public class UserController {
     }
 	@GetMapping("/findallstudentsbyclass")
 	public String findallstudentsbyclass() {
-		ClassTable c=classDAO.findByClassname("J2EE");
-		Iterator<StudentTable> it = c.getStudents().iterator();  
+		ClassTable0 c=classDAO.findByClassname("J2EE");
+		Iterator<StudentTable0> it = c.getStudents().iterator();
 		String studentnames="";
 		while (it.hasNext()) {  
 		  studentnames += (it.next().getStudentname()+" ");   
@@ -81,16 +78,16 @@ public class UserController {
     @PostMapping("/user/register")
 	public String register(String username, String password,
 			String studentname, String gender, String dateofbirth, String age) {
-		UserTable user=userDAO.findByUsernameAndPassword(username,password);
+		UserTable0 user=userDAO.findByUsernameAndPassword(username,password);
 		if(user!=null)
 		{
 			return "Username and password exists";
 		}
-		user=new UserTable();
+		user=new UserTable0();
 		user.setUsername(username);
 		user.setPassword(password);
 		user=userDAO.save(user);
-		StudentTable student=new StudentTable();
+		StudentTable0 student=new StudentTable0();
 		student.setId(user.getId());
 		student.setStudentname(studentname);
 		student.setGender(gender);
@@ -103,12 +100,12 @@ public class UserController {
 	@PostMapping("/user/update")
 	public String update(String username, String password,
 			String studentname, String gender, String dateofbirth, String age, int major) {
-		UserTable user=userDAO.findByUsernameAndPassword(username,password);
+		UserTable0 user=userDAO.findByUsernameAndPassword(username,password);
 		if(user==null)
 		{
 			return "User does not exist";
 		}
-		StudentTable student=new StudentTable();
+		StudentTable0 student=new StudentTable0();
 		student.setId(user.getId());
 		student.setStudentname(studentname);
 		student.setGender(gender);
@@ -119,7 +116,7 @@ public class UserController {
 	}
 	@PostMapping("/user/delete")
 	public String delete(String username, String password) {	
-		UserTable user=userDAO.findByUsernameAndPassword(username,password);
+		UserTable0 user=userDAO.findByUsernameAndPassword(username,password);
 		if(user==null)
 		{
 			return "User does not exist";
@@ -129,7 +126,7 @@ public class UserController {
 		return "Delete Successful";
 	}
 	@GetMapping("userAll")
-	public List<UserTable> findAll() {
+	public List<UserTable0> findAll() {
         System.out.println("查询所有数据:");
         return userDAO.findAll();
     }

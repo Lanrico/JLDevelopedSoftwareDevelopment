@@ -1,12 +1,11 @@
 package com.example.demo.model;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="studenttable")
-public class StudentTable {
+public class StudentTable0 {
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
 	@GeneratedValue(generator = "generator")
@@ -21,20 +20,20 @@ public class StudentTable {
 	private Integer age;
 	
 	@OneToOne
-	private UserTable user;
-	public UserTable getUser() {
+	private UserTable0 user;
+	public UserTable0 getUser() {
 		return user;
 	}
-	public void setUser(UserTable user) {
+	public void setUser(UserTable0 user) {
 		this.user = user;
 	}
 	
 	@ManyToOne
-    private MajorTable major;	
-	public MajorTable getMajor() {
+    private MajorTable0 major;
+	public MajorTable0 getMajor() {
 		return major;
 	}
-	public void setMajor(MajorTable major) {
+	public void setMajor(MajorTable0 major) {
 		this.major = major;
 	}
 	
@@ -43,11 +42,11 @@ public class StudentTable {
 	  name = "student_class", 
 	  joinColumns = @JoinColumn(name = "student_id"), 
 	  inverseJoinColumns = @JoinColumn(name = "class_id"))
-	private Set<ClassTable> classes;
-	public Set<ClassTable> getClasses() {
+	private Set<ClassTable0> classes;
+	public Set<ClassTable0> getClasses() {
 		return classes;
 	}
-	public void setClasses(Set<ClassTable> classes) {
+	public void setClasses(Set<ClassTable0> classes) {
 		this.classes = classes;
 	}
 

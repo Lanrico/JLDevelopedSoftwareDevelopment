@@ -1,11 +1,10 @@
 package com.example.demo.model;
-import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="classtable")
-public class ClassTable {
+public class ClassTable0 {
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
 	@GeneratedValue(generator = "generator")
@@ -15,11 +14,11 @@ public class ClassTable {
 	
 	
 	@ManyToMany(mappedBy = "classes", fetch = FetchType.EAGER)
-	private Set<StudentTable> students;
-	public Set<StudentTable> getStudents() {
+	private Set<StudentTable0> students;
+	public Set<StudentTable0> getStudents() {
 		return students;
 	}
-	public void setStudents(Set<StudentTable> students) {
+	public void setStudents(Set<StudentTable0> students) {
 		this.students = students;
 	}
 	

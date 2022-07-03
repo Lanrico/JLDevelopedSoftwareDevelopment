@@ -5,7 +5,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="majortable")
-public class MajorTable {
+public class MajorTable0 {
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
 	@GeneratedValue(generator = "generator")
@@ -14,11 +14,11 @@ public class MajorTable {
 	private String majorname;
 	
 	@OneToMany(mappedBy = "major")
-    private Set<StudentTable> students;
-	public Set<StudentTable> getStudents() {
+    private Set<StudentTable0> students;
+	public Set<StudentTable0> getStudents() {
 		return students;
 	}
-	public void setStudents(Set<StudentTable> students) {
+	public void setStudents(Set<StudentTable0> students) {
 		this.students = students;
 	}
 

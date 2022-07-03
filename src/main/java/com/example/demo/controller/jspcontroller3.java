@@ -1,10 +1,5 @@
 package com.example.demo.controller;
 
-import java.io.IOException;
-import java.util.*;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,26 +18,26 @@ public class jspcontroller3 {
 
 
     @Autowired
-    private UserTableDAO userDAO;
+    private UserTableDAO0 userDAO;
     @Autowired
-    private StudentTableDAO studentDAO;
+    private StudentTableDAO0 studentDAO;
     @Autowired
-    private MajorTableDAO majorDAO;
+    private MajorTableDAO0 majorDAO;
 
     @PostMapping("/register")
     public String register(String username, String password,
                            String studentname, String gender, String dateofbirth, String age) {
-        UserTable user=userDAO.findByUsernameAndPassword(username,password);
+        UserTable0 user=userDAO.findByUsernameAndPassword(username,password);
         if(user!=null)
         {
             return "Username and password exists";
         }
         System.out.println("123123123");
-        user=new UserTable();
+        user=new UserTable0();
         user.setUsername(username);
         user.setPassword(password);
         user=userDAO.save(user);
-        StudentTable student=new StudentTable();
+        StudentTable0 student=new StudentTable0();
         student.setId(user.getId());
         student.setStudentname(studentname);
         student.setGender(gender);

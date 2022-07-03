@@ -3,13 +3,13 @@ import="java.util.*, com.example.demo.model.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <%
-	UserTable user=(UserTable)session.getAttribute("user");
-	StudentTable stu=user.getStudent();
+	UserTable0 user=(UserTable0)session.getAttribute("user");
+	StudentTable0 stu=user.getStudent();
 	String studentname=stu.getStudentname();
 	String gender=stu.getGender();
 	String dateofbirth=stu.getDateofbirth();
 	Integer age=stu.getAge();
-	MajorTable major=stu.getMajor();
+	MajorTable0 major=stu.getMajor();
 	String majorname=major.getMajorname();
 	List<String> majornamelist=(List<String>)session.getAttribute("majornamelist");
 %>

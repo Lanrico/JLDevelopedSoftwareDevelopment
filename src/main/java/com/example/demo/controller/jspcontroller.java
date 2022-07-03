@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.DAO.*;
@@ -23,14 +22,14 @@ public class jspcontroller {
 	
 	
 	@Autowired
-	private UserTableDAO userDAO;
+	private UserTableDAO0 userDAO;
 	@Autowired
-	private StudentTableDAO studentDAO;
+	private StudentTableDAO0 studentDAO;
 	@Autowired
-	private MajorTableDAO majorDAO; 
+	private MajorTableDAO0 majorDAO;
     @RequestMapping("/validate")
     public String login(String username, String password, HttpSession session) throws IOException {	
-    	UserTable user=(UserTable)session.getAttribute("user");
+    	UserTable0 user=(UserTable0)session.getAttribute("user");
     	if(user!=null)
     		return "main";
     	user=userDAO.findByUsernameAndPassword(username,password);
@@ -51,7 +50,7 @@ public class jspcontroller {
     	List<String> majornamelist=(List<String>)session.getAttribute("majornamelist");
     	if(majornamelist!=null)
     		return "editstudent";  
-    	List<MajorTable> majorlist=majorDAO.findAll();
+    	List<MajorTable0> majorlist=majorDAO.findAll();
     	majornamelist=new ArrayList<String>();
     	for (int i = 0; i < majorlist.size(); i++) {
             majornamelist.add(majorlist.get(i).getMajorname());
@@ -62,13 +61,13 @@ public class jspcontroller {
     @RequestMapping("/updateStudent")
     public String updatestudent(String studentname, String gender,
     		String dateofbirth, String age, String majorname, HttpSession session) throws IOException{
-    	UserTable user=(UserTable)session.getAttribute("user");
-    	StudentTable stu=user.getStudent();
+    	UserTable0 user=(UserTable0)session.getAttribute("user");
+    	StudentTable0 stu=user.getStudent();
     	stu.setStudentname(studentname);
     	stu.setGender(gender);
     	stu.setDateofbirth(dateofbirth);
     	stu.setAge(Integer.parseInt(age));
-    	MajorTable major=majorDAO.findByMajorname(majorname);
+    	MajorTable0 major=majorDAO.findByMajorname(majorname);
     	stu.setMajor(major);
     	studentDAO.save(stu);
         return "studentinfo";  

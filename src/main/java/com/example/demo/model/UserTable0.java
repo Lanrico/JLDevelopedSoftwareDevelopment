@@ -3,7 +3,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="usertable")
-public class UserTable {
+public class UserTable0 {
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
 	@GeneratedValue(generator = "generator")
@@ -14,11 +14,11 @@ public class UserTable {
 	private String password;
 	
 	@OneToOne(mappedBy = "user", cascade=CascadeType.ALL)
-	private StudentTable student;
-	public StudentTable getStudent() {
+	private StudentTable0 student;
+	public StudentTable0 getStudent() {
 		return student;
 	}
-	public void setStudent(StudentTable student) {
+	public void setStudent(StudentTable0 student) {
 		this.student = student;
 	}
 	
