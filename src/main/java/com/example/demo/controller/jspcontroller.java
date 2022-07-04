@@ -28,7 +28,8 @@ public class jspcontroller {
 	@Autowired
 	private MajorTableDAO0 majorDAO;
     @RequestMapping("/validate")
-    public String login(String username, String password, HttpSession session) throws IOException {	
+    public String login(String username, String password, HttpSession session) throws IOException {
+		System.out.println("1231231");
     	UserTable0 user=(UserTable0)session.getAttribute("user");
     	if(user!=null)
     		return "main";
