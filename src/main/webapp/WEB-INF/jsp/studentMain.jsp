@@ -11,21 +11,13 @@ Hello <span>${username}</span>
     <input type="submit" value="Personal Information"/>
 </form>
 <br>
-<form action="\updatestudentInfo" method="get">
-    <input type="submit" value="Update Personal Information"/>
-</form>
-<br>
-<form action="\courseInfo" method="get">
-    <input type="submit" value="Course Information"/>
-</form>
-<br>
-<form action="\courseManagement" method="get">
+<form action="\studentCourseManagement" method="get">
     <input type="submit" value="Course Management"/>
 </form>
 <br>
-<a href="/deleteAccount"
-   onClick="if(!confirm('Confirm deletion？'))return false;else return true;">
-    Delete Current Account</a>
+<form action="\updatestudentInfo" method="get">
+    <input type="submit" value="Change Password"/>
+</form>
 <br>
 
 </body>

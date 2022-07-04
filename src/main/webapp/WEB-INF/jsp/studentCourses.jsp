@@ -3,7 +3,7 @@ import="java.util.*, com.example.demo.model.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <%
-	List<String> studentcoursenamelist=(List<String>)session.getAttribute("studentcoursenamelist");
+	Set<SectionEntity> studentsectionlist=(Set<SectionEntity>)session.getAttribute("studentsectionlist");
 %>
 <head>
 	<title>Course Management</title>
@@ -12,14 +12,27 @@ import="java.util.*, com.example.demo.model.*"%>
 	<table width="400" border=1>
 	<caption>Your Course Information：</caption>
 		<tr>
-			<th>Course Name</th><th>Operation</th>
+			<th>Course ID</th>
+			<th>Course Name</th>
+			<th>Credits</th>
+			<th>Department</th>
+			<th>Building</th>
+			<th>Room Number</th>
+			<th>Room Capacity</th>
+			<th>Operation</th>
 		</tr>
-		<c:forEach var="value" items="${studentcoursenamelist}">
+		<c:forEach var="value" items="${studentsectionlist}">
 		<tr>
-			<td align="center">${value}</td>
+			<td align="center">${value.getCourse().getCourseId()}</td>
+			<td align="center">${value.getCourse().getTitle()}</td>
+			<td align="center">${value.getCourse().getCredits()}</td>
+			<td align="center">${value.getCourse().getDepartment().getDeptName()}</td>
+			<td align="center">${value.getClassroom().getBuilding()}</td>
+			<td align="center">${value.getClassroom().getRoomNumber()}</td>
+			<td align="center">${value.getClassroom().getCapacity()}</td>
 			<td align="center">
-				<a href="/deleteCourse?coursename=${value}"
-				onClick="if(!confirm('Confirm deletion？'))return false;else return true;">
+				<a href="/deleteCourse?courseId=${value.getCourse().getCourseId()}"
+				onClick="if(!confirm('Are you sure you want to drop this course？'))return false;else return true;">
 				Drop</a>
 			</td>
 		</tr>
@@ -27,6 +40,10 @@ import="java.util.*, com.example.demo.model.*"%>
 	</table>
 	<form action="\validate" method="get">
 		<input type="submit" value="Back"/>
+	</form>
+	<br>
+	<form action="\courseInfo" method="get">
+		<input type="submit" value="Course Information"/>
 	</form>
 </body>
 </html>
