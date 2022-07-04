@@ -43,7 +43,7 @@ import="java.util.*, com.example.demo.model.*"%>
 	</form>
 	<br>
 	<form action="\courseInfo" method="get">
-		<input type="submit" value="Course Information"/>
+		<input type="submit" value="Select Other Courses "/>
 	</form>
 </body>
 </html>

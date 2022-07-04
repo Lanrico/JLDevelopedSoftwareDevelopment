@@ -35,19 +35,19 @@ import="java.util.*, com.example.demo.model.*"%>
 		<tr>
 			<td>Origin Password:</td>
 			<td>
-				<input type="text" name="originPassword" value="" />
+				<input type="password" name="originPassword" value="" />
 			</td>
 		</tr>
 		<tr>
 			<td>New Password:</td>
 			<td>
-				<input type="text" name="newPassword1" value="" />
+				<input type="password" name="newPassword1" value="" />
 			</td>
 		</tr>
 		<tr>
 			<td>Reenter New Password:</td>
 			<td>
-				<input type="text" name="newPassword2" value="" />
+				<input type="password" name="newPassword2" value="" />
 			</td>
 		</tr>
 <%--		<tr>--%>

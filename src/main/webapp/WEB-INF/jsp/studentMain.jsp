@@ -5,18 +5,18 @@
 </head>
 <body bgcolor="#E3E3E3">
 
-Hello <span>${username}</span>
+Hello student <span>${username}</span>
 <br>
 <form action="\studentInfo" method="get">
-    <input type="submit" value="Personal Information"/>
+    <input type="submit" value="Student Information"/>
 </form>
 <br>
 <form action="\studentCourseManagement" method="get">
-    <input type="submit" value="Course Management"/>
+    <input type="submit" value="Student Course Management"/>
 </form>
 <br>
 <form action="\updatestudentInfo" method="get">
-    <input type="submit" value="Change Password"/>
+    <input type="submit" value="Change Student Password"/>
 </form>
 <br>
 
