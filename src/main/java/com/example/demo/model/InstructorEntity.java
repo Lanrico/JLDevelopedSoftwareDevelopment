@@ -79,7 +79,7 @@ public class InstructorEntity {
     public Set<StudentEntity> getStudents() {
         return student;
     }
-    public void setStudents(Set<StudentEntity> section) {
+    public void setStudents(Set<StudentEntity> student) {
         this.student = student;
     }
 

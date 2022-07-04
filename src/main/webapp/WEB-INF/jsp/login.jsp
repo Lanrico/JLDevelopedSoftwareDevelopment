@@ -7,7 +7,7 @@
 <table>
 <caption>User Login</caption>
 <tr>
-<td>Username:</td>
+<td>ID:</td>
 <td>
 <input type="text" name="ID" size="20"/>
 </td>
@@ -22,6 +22,7 @@
 <input type="submit" value="Login"/>
 <input type="reset" value="Reset"/>
 </form>
-<a href="registration.html">registrate</a>
+<%--<a href="registration.html">registrate</a>--%>
+<a href="studentMain.jsp">registrate</a>
 </body>
 </html>
