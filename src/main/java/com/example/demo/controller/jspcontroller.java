@@ -19,28 +19,48 @@ public class jspcontroller {
     public String login(){
         return "login"; 
     }
-	
-	
+
+
 	@Autowired
 	private UserTableDAO0 userDAO;
 	@Autowired
-	private StudentTableDAO0 studentDAO;
+	private StudentDAO studentDAO;
+	@Autowired
+	private InstructorDAO instructorDAO;
+	@Autowired
+	private StudentTableDAO0 studentTableDAO;
 	@Autowired
 	private MajorTableDAO0 majorDAO;
     @RequestMapping("/validate")
-    public String login(String username, String password, HttpSession session) throws IOException {
+    public String login(String ID, String password, HttpSession session) throws IOException {
 		System.out.println("1231231");
-    	UserTable0 user=(UserTable0)session.getAttribute("user");
-    	if(user!=null)
-    		return "main";
-    	user=userDAO.findByUsernameAndPassword(username,password);
-		if(user==null)
+//		UserTable0 user=(UserTable0)session.getAttribute("user");
+//		if(user!=null)
+//			return "main";
+//		user=userDAO.findByUsernameAndPassword(username,password);
+//		if(user==null)
+//		{
+//			return "login";
+//		}
+//		session.setAttribute("user", user);
+//		session.setAttribute("studentname", user.getStudent().getStudentname());
+//		return "main";
+		StudentEntity student= studentDAO.findStudentEntityByidAndPassword(ID, password);
+		InstructorEntity instructor= instructorDAO.findInstructorEntityByidAndPassword(ID, password);
+		if(student==null && instructor == null)
 		{
 			return "login";
 		}
-		session.setAttribute("user", user);
-		session.setAttribute("studentname", user.getStudent().getStudentname());
-		return "main";
+		else if(student==null){
+			session.setAttribute("user", instructor);
+			session.setAttribute("username", instructor.getName());
+			return "main"; //之后要改成区分学生和老师的
+		}
+		else {
+			session.setAttribute("user", student);
+			session.setAttribute("username", student.getName());
+			return "main";
+		}
 	}
     @RequestMapping("/studentInfo")
     public String studentInfo(){
@@ -70,7 +90,7 @@ public class jspcontroller {
     	stu.setAge(Integer.parseInt(age));
     	MajorTable0 major=majorDAO.findByMajorname(majorname);
     	stu.setMajor(major);
-    	studentDAO.save(stu);
+    	studentTableDAO.save(stu);
         return "studentinfo";  
     }
 

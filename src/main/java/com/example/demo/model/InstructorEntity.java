@@ -15,6 +15,9 @@ public class InstructorEntity {
     @Basic
     @Column(name = "name")
     private String name;
+    @Basic
+    @Column(name = "password")
+    private String password;
 //    @Basic
 //    @Column(name = "dept_name")
 //    private String deptName;
@@ -52,6 +55,14 @@ public class InstructorEntity {
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @ManyToOne

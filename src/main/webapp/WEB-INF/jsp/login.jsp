@@ -9,7 +9,7 @@
 <tr>
 <td>Username:</td>
 <td>
-<input type="text" name="username" size="20"/>
+<input type="text" name="ID" size="20"/>
 </td>
 </tr>
 <tr>
