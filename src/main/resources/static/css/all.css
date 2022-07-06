@@ -1,0 +1,29 @@
+table {
+    caption-side: top;
+}
+.loginForm {
+    height: 350px;
+    width: 500px;
+    border: #4d4d4d solid 1px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px #4d4d4d;
+    margin-top: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 40px;
+}
+
+.loginForm h2 {
+    text-align: center;
+}
+
+.button {
+    text-align: center;
+    vertical-align: middle;
+}
+#reset-button{
+    margin: 20px 0 15px 70px;
+}
+#login-button{
+    margin: 20px 0 15px 95px;
+}

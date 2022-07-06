@@ -39,7 +39,6 @@ public class StudentController {
 	private MajorTableDAO0 majorDAO;
     @RequestMapping("/validate")
     public String login(String ID, String password, HttpSession session) throws IOException {
-		System.out.println("1231231");
 		Object user=session.getAttribute("user");
 		if(user!=null) {
 			try {
@@ -62,8 +61,10 @@ public class StudentController {
 //		return "main";
 		StudentEntity student= studentDAO.findStudentEntityByidAndPassword(ID, password);
 		InstructorEntity instructor= instructorDAO.findInstructorEntityByidAndPassword(ID, password);
+		session.setAttribute("userValidate",true);
 		if(student==null && instructor == null)
 		{
+			session.setAttribute("userValidate",false);
 			return "login";
 		}
 		else if(student==null){
