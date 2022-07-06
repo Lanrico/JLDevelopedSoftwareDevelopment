@@ -21,9 +21,6 @@ public class StudentController {
         return "login"; 
     }
 
-
-	@Autowired
-	private UserTableDAO0 userDAO;
 	@Autowired
 	private StudentDAO studentDAO;
 	@Autowired
@@ -33,32 +30,18 @@ public class StudentController {
 	@Autowired
 	private SectionDAO sectionDAO;
 
-	@Autowired
-	private StudentTableDAO0 studentTableDAO;
-	@Autowired
-	private MajorTableDAO0 majorDAO;
     @RequestMapping("/validate")
     public String login(String ID, String password, HttpSession session) throws IOException {
 		Object user=session.getAttribute("user");
 		if(user!=null) {
+			session.setAttribute("changePasswordValidate", "");
 			try {
 				StudentEntity user0 = (StudentEntity)user;
 			}catch (ClassCastException e){
 				return "instructorMain";
 			}
-//			if (studentDAO.findStudentEntityByidAndPassword(user0.getId(), user0.getPassword()) == null){
-//				return "instructorMain";
-//			}
 			return "studentMain";
 		}
-//		user=userDAO.findByUsernameAndPassword(username,password);
-//		if(user==null)
-//		{
-//			return "login";
-//		}
-//		session.setAttribute("user", user);
-//		session.setAttribute("studentname", user.getStudent().getStudentname());
-//		return "main";
 		StudentEntity student= studentDAO.findStudentEntityByidAndPassword(ID, password);
 		InstructorEntity instructor= instructorDAO.findInstructorEntityByidAndPassword(ID, password);
 		session.setAttribute("userValidate",true);
@@ -70,47 +53,28 @@ public class StudentController {
 		else if(student==null){
 			session.setAttribute("user", instructor);
 			session.setAttribute("username", instructor.getName());
-//			return "main"; //之后要改成区分学生和老师的
 			return "instructorMain";
 		}
 		else {
 			session.setAttribute("user", student);
 			session.setAttribute("username", student.getName());
-			//return "main";
 			student = (StudentEntity) session.getAttribute("user");
 			return "studentMain";
 		}
 	}
+
     @RequestMapping("/studentInfo")
     public String studentInfo(){
         return "studentinfo";  
     }
+
     @RequestMapping("/updatestudentInfo")
     public String updatestudentInfo(HttpSession session) throws IOException{
-//    	List<String> majornamelist=(List<String>)session.getAttribute("majornamelist");
-//    	if(majornamelist!=null)
-//    		return "editstudent";
-//    	List<MajorTable0> majorlist=majorDAO.findAll();
-//    	majornamelist=new ArrayList<String>();
-//    	for (int i = 0; i < majorlist.size(); i++) {
-//            majornamelist.add(majorlist.get(i).getMajorname());
-//        }
-//    	session.setAttribute("majornamelist", majornamelist);
-    	return "editstudent";  
+    	return "editstudent";
     }
-    @RequestMapping("/updateStudent")
-//	public String updatestudent(String studentname, String gender,
-//								String dateofbirth, String age, String majorname, HttpSession session) throws IOException{
-	public String updatestudent(String originPassword, String newPassword1, String newPassword2, HttpSession session) throws IOException{
-//    	UserTable0 user=(UserTable0)session.getAttribute("user");
-//    	StudentTable0 stu=user.getStudent();
-//    	stu.setStudentname(studentname);
-//    	stu.setGender(gender);
-//    	stu.setDateofbirth(dateofbirth);
-//    	stu.setAge(Integer.parseInt(age));
-//    	MajorTable0 major=majorDAO.findByMajorname(majorname);
-//    	stu.setMajor(major);
 
+    @RequestMapping("/updateStudent")
+	public String updatestudent(String originPassword, String newPassword1, String newPassword2, HttpSession session) throws IOException{
 		StudentEntity student = (StudentEntity)session.getAttribute("user");
 		if(!Objects.equals(originPassword, student.getPassword())){
 			session.setAttribute("changePasswordValidate", "ErrorOriginPassword");
@@ -127,44 +91,30 @@ public class StudentController {
 			return "studentinfo";
 		}
     }
+
 	@RequestMapping("/courseInfo")
 	public String courseInfo(HttpSession session) throws IOException {
-//    	List<String> coursenamelist=new ArrayList<String>();
-//    	List<ClassTable0> courselist=classDAO.findAll();
-//    	for (int i = 0; i < courselist.size(); i++) {
-//    		coursenamelist.add(courselist.get(i).getClassname());
-//        }
-//    	session.setAttribute("coursenamelist", coursenamelist);
-//		StudentEntity student=(StudentEntity) session.getAttribute("user");
-//		Set<SectionEntity> sectionlist= student.getSections();
-//		Set<CourseEntity> courselist = new HashSet<>();
-//		for (SectionEntity a: sectionlist) {
-//			courselist.add(a.getCourse());
-//		}
-		List<CourseEntity> courselist=courseDAO.findAll();
-
+		StudentEntity student=(StudentEntity) session.getAttribute("user");
+		Set<SectionEntity> sectionlist = student.getSections();
+		List<CourseEntity> courselist0 = courseDAO.findAll();
+		List<CourseEntity> studentcourselist = courseDAO.findCourseEntitiesBySectionIn(sectionlist);
+		List<CourseEntity> courselist = new ArrayList<>();
+		for (CourseEntity entity : courselist0) {
+			boolean flag = true;
+			for (CourseEntity courseEntity : studentcourselist) {
+				if (Objects.equals(entity.getCourseId(), courseEntity.getCourseId())) {
+					flag = false;
+					break;
+				}
+			}
+			if (flag) courselist.add(entity);
+		}
 		session.setAttribute("allcourselist", courselist);
 		return "allCourses";
 	}
 
 	@RequestMapping("/courseSelection")
 	public String courseSelection(String courseId, HttpSession session) throws IOException {
-//    	UserTable0 user=(UserTable0)session.getAttribute("user");
-//    	StudentTable0 stu=user.getStudent();
-//    	Set<ClassTable0> courselist=(Set<ClassTable0>)stu.getClasses();
-//    	Set<ClassTable0> courselist1=new HashSet<ClassTable0>();
-//    	for (Object obj: courselist) {
-//    		ClassTable0 course=(ClassTable0)obj;
-//    		if(course.getClassname().equals(courseId))
-//    			return "allCourses";
-//    		courselist1.add(course);
-//        }
-//    	ClassTable0 course=classDAO.findByClassname(courseId);
-//    	stu.getClasses().clear();
-//    	courselist1.add(course);
-//    	stu.setClasses(courselist1);
-//    	studentTableDAO.save(stu);
-
 		StudentEntity student=(StudentEntity) session.getAttribute("user");
 		Set<SectionEntity> sectionlist=(Set<SectionEntity>)student.getSections();
 		Set<SectionEntity> sectionlist1=new HashSet<SectionEntity>();
@@ -187,41 +137,14 @@ public class StudentController {
 
 	@RequestMapping("/studentCourseManagement")
 	public String studentCourseManagement(HttpSession session) throws IOException {
-//    	UserTable0 user=(UserTable0)session.getAttribute("user");
-//    	StudentTable0 stu=user.getStudent();
-//    	Set<ClassTable0> courselist=(Set<ClassTable0>)stu.getClasses();
-//    	List<String> coursenamelist=new ArrayList<String>();
-//    	for (Object obj: courselist) {
-//    		ClassTable0 course=(ClassTable0)obj;
-//    		coursenamelist.add(course.getClassname());
-//        }
-//    	session.setAttribute("studentcoursenamelist", coursenamelist);
 		StudentEntity student=(StudentEntity) session.getAttribute("user");
 		Set<SectionEntity> sectionlist= student.getSections();
-//		Set<CourseEntity> courselist = new HashSet<>();
-//		for (SectionEntity a: sectionlist) {
-//			courselist.add(a.getCourse());
-//		}
 		session.setAttribute("studentsectionlist", sectionlist);
 		return "studentCourses";
 	}
 
 	@RequestMapping("/deleteCourse")
 	public String deleteCourse(String courseId, HttpSession session) throws IOException {
-//    	UserTable0 user=(UserTable0)session.getAttribute("user");
-//    	StudentTable0 stu=user.getStudent();
-//    	Set<ClassTable0> courselist=(Set<ClassTable0>)stu.getClasses();
-//    	Set<ClassTable0> courselist1=new HashSet<ClassTable0>();
-//    	for (Object obj: courselist) {
-//    		ClassTable0 course=(ClassTable0)obj;
-//    		if(course.getClassname().equals(coursename))
-//    			continue;
-//    		courselist1.add(course);
-//        }
-//    	stu.getClasses().clear();
-//    	stu.setClasses(courselist1);
-//    	studentDAO.save(stu);
-
 		StudentEntity student=(StudentEntity) session.getAttribute("user");
 		Set<SectionEntity> sectionlist=(Set<SectionEntity>)student.getSections();
 		Set<SectionEntity> sectionlist1=new HashSet<SectionEntity>();
@@ -235,6 +158,4 @@ public class StudentController {
 		studentDAO.save(student);
 		return "studentMain";
 	}
-
-
 }

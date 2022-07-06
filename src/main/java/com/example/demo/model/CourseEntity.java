@@ -15,9 +15,6 @@ public class CourseEntity {
     @Basic
     @Column(name = "title")
     private String title;
-//    @Basic
-//    @Column(name = "dept_name")
-//    private String deptName;
     @Basic
     @Column(name = "credits")
     private BigInteger credits;
@@ -37,14 +34,6 @@ public class CourseEntity {
     public void setTitle(String title) {
         this.title = title;
     }
-
-//    public String getDeptName() {
-//        return deptName;
-//    }
-//
-//    public void setDeptName(String deptName) {
-//        this.deptName = deptName;
-//    }
 
     public BigInteger getCredits() {
         return credits;

@@ -1,19 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"
 import="com.example.demo.model.*"%>
 <%@ page import="java.math.BigDecimal" %>
-<html>
+<!DOCTYPE html>
 <head>
 	<title>Student Information</title>
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/all.css" rel="stylesheet" type="text/css">
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <%
-//	UserTable0 user=(UserTable0)session.getAttribute("user");
-//	StudentTable0 stu=user.getStudent();
-//	String studentname=stu.getStudentname();
-//	String gender=stu.getGender();
-//	String dateofbirth=stu.getDateofbirth();
-//	Integer age=stu.getAge();
-//	MajorTable0 major=stu.getMajor();
-//	String majorname=major.getMajorname();
 	StudentEntity student = (StudentEntity) session.getAttribute("user");
 	String ID = student.getId();
 	String name = student.getName();
@@ -23,8 +19,9 @@ import="com.example.demo.model.*"%>
 	String instructor = student.getInstructors().getName();
 
 %>
-<body bgcolor="#D9DFAA">
-	<table width="400">
+<body>
+<div class="mainContainer">
+	<table class="table table-condensed">
 		<tr>
 			<td>Student Number：</td>
 			<td><%=ID%></td>
@@ -51,7 +48,8 @@ import="com.example.demo.model.*"%>
 		</tr>
 	</table>
 	<form action="\validate" method="get">
-		<input type="submit" value="Back"/>
+		<input class="btn btn-outline-dark centerButton" type="submit" value="Back"/>
 	</form>
+</div>
 </body>
 </html>

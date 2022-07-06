@@ -11,7 +11,6 @@ import java.util.List;
 
 public interface SectionDAO extends JpaRepository<SectionEntity, Integer> {
     List<SectionEntity> findAll();
-    SectionEntity save(CourseEntity entity);
     SectionEntity findSectionEntitiesByCourseId(String ID);
     SectionEntity findBySecIdAndCourseIdAndSemesterAndYear(String secId, String courseId, String semester, BigDecimal year);
 }

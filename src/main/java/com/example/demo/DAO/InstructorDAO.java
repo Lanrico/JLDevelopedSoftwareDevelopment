@@ -10,5 +10,4 @@ public interface InstructorDAO extends JpaRepository<InstructorEntity, Integer> 
     InstructorEntity findInstructorEntityByidAndPassword(String ID, String password);
     List<InstructorEntity> findAll();
     InstructorEntity save(InstructorEntity entity);
-    void deleteById(String id);
 }

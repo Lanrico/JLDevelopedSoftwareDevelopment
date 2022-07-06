@@ -18,9 +18,6 @@ public class InstructorEntity {
     @Basic
     @Column(name = "password")
     private String password;
-//    @Basic
-//    @Column(name = "dept_name")
-//    private String deptName;
     @Basic
     @Column(name = "salary")
     private BigDecimal salary;
@@ -40,14 +37,6 @@ public class InstructorEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public String getDeptName() {
-//        return deptName;
-//    }
-//
-//    public void setDeptName(String deptName) {
-//        this.deptName = deptName;
-//    }
 
     public BigDecimal getSalary() {
         return salary;

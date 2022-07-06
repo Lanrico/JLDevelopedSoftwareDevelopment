@@ -25,15 +25,6 @@ public class SectionEntity {
     @Id
     @Column(name = "year")
     private BigDecimal year;
-//    @Basic
-//    @Column(name = "building")
-//    private String building;
-//    @Basic
-//    @Column(name = "room_number")
-//    private String roomNumber;
-//    @Basic
-//    @Column(name = "time_slot_id")
-//    private String timeSlotId;
 
     public String getCourseId() {
         return courseId;
@@ -67,29 +58,6 @@ public class SectionEntity {
         this.year = year;
     }
 
-//    public String getBuilding() {
-//        return building;
-//    }
-//
-//    public void setBuilding(String building) {
-//        this.building = building;
-//    }
-//
-//    public String getRoomNumber() {
-//        return roomNumber;
-//    }
-//
-//    public void setRoomNumber(String roomNumber) {
-//        this.roomNumber = roomNumber;
-//    }
-
-//    public String getTimeSlotId() {
-//        return timeSlotId;
-//    }
-//
-//    public void setTimeSlotId(String timeSlotId) {
-//        this.timeSlotId = timeSlotId;
-//    }
     @ManyToOne
     private CourseEntity course;
     public CourseEntity getCourse() {
@@ -98,6 +66,7 @@ public class SectionEntity {
     public void setCourse(CourseEntity course) {
         this.course = course;
     }
+
     @ManyToOne
     private ClassroomEntity classroom;
     public ClassroomEntity getClassroom() {
@@ -106,6 +75,7 @@ public class SectionEntity {
     public void setClassroom(ClassroomEntity classroom) {
         this.classroom = classroom;
     }
+
     @ManyToOne
     private TimeSlotEntity timeSlot;
     public TimeSlotEntity getTimeSlot() {

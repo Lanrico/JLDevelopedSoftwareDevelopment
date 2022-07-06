@@ -2,7 +2,6 @@ package com.example.demo.DAO;
 
 import com.example.demo.model.SectionEntity;
 import com.example.demo.model.StudentEntity;
-import com.example.demo.model.UserTable0;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -14,5 +13,4 @@ public interface StudentDAO extends JpaRepository<StudentEntity, Integer> {
     StudentEntity save(StudentEntity entity);
     List<StudentEntity> findStudentEntitiesBySectionIn(Set<SectionEntity> entity);
     List<StudentEntity> findStudentEntitiesByInstructor_Id(String ID);
-    void deleteById(String id);
 }

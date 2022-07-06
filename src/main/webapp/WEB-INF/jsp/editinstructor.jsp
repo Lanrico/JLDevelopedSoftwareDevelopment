@@ -1,18 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"
          import="java.util.*, com.example.demo.model.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<!DOCTYPE html>
 <%
-    //	UserTable0 user=(UserTable0)session.getAttribute("user");
-//	StudentTable0 stu=user.getStudent();
-//	String studentname=stu.getStudentname();
-//	String gender=stu.getGender();
-//	String dateofbirth=stu.getDateofbirth();
-//	Integer age=stu.getAge();
-//	MajorTable0 major=stu.getMajor();
-//	String majorname=major.getMajorname();
-//	List<String> majornamelist=(List<String>)session.getAttribute("majornamelist");
-
     String changePasswordValidate=(String)session.getAttribute("changePasswordValidate");
     String errorContext = "";
     System.out.println(changePasswordValidate);
@@ -20,77 +10,50 @@
         errorContext = "";
     }
     else if(changePasswordValidate.equals("DifferentReenter")){
-        errorContext = "The two entered passwords do not match";
+        errorContext = "The two entered passwords do not match.";
     }
     else if(changePasswordValidate.equals("ErrorOriginPassword")){
-        errorContext = "You enter the wrong origin password";
+        errorContext = "You enter the wrong origin password.";
     }
+    String errorDisplay = "none";
+    if (changePasswordValidate != null) if (!changePasswordValidate.equals("")) errorDisplay = "block";
 %>
 <head>
     <title>Change Instructor Password</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </head>
-<body bgcolor="#D9DFAA">
+<body>
+<div class="mainContainer">
 <form action="updateInstructor" method="post">
-    <table>
+    <table class="table table-condensed">
         <tr>
             <td>Origin Password:</td>
             <td>
-                <input type="password" name="originPassword" value="" />
+                <input class="form-control" type="password" name="originPassword" value="" />
             </td>
         </tr>
         <tr>
             <td>New Password:</td>
             <td>
-                <input type="password" name="newPassword1" value="" />
+                <input class="form-control" type="password" name="newPassword1" value="" />
             </td>
         </tr>
         <tr>
             <td>Reenter New Password:</td>
             <td>
-                <input type="password" name="newPassword2" value="" />
+                <input class="form-control" type="password" name="newPassword2" value="" />
             </td>
         </tr>
-        <%--		<tr>--%>
-        <%--			<td>Name:</td>--%>
-        <%--			<td>--%>
-        <%--				<input type="text" name="studentname" value="<%=studentname%>" />--%>
-        <%--			</td>--%>
-        <%--		</tr>--%>
-        <%--		<tr>--%>
-        <%--			<td>Name:</td>--%>
-        <%--			<td>--%>
-        <%--				<input type="text" name="gender" value="<%=gender%>" />--%>
-        <%--			</td>--%>
-        <%--		</tr>--%>
-        <%--		<tr>--%>
-        <%--			<td>Date of Birth:</td>--%>
-        <%--			<td>--%>
-        <%--				<input type="text" name="dateofbirth" value="<%=dateofbirth%>"/>--%>
-        <%--			</td>--%>
-        <%--		</tr>--%>
-        <%--		<tr>--%>
-        <%--			<td>Age:</td>--%>
-        <%--			<td>--%>
-        <%--				<input type="text" name="age" value="<%=age%>" />--%>
-        <%--			</td>--%>
-        <%--		</tr>--%>
-        <%--		<tr> --%>
-        <%--            <td>Major：</td>--%>
-        <%--            <td><select id="majorname" name="majorname">  --%>
-        <%--                                <c:forEach var="value" items="${majornamelist}">  --%>
-        <%--                                <option value="${value}">  --%>
-        <%--                                ${value}  --%>
-        <%--                                </option>  --%>
-        <%--                                </c:forEach>  --%>
-        <%--                              </select>  --%>
-        <%--            </td>--%>
-        <%--        </tr>                  --%>
     </table>
-    <p style="color: red"><%=errorContext%></p>
-    <input type="submit" value="submit"/>
+    <input class="btn btn-outline-dark" type="submit" value="submit" id="login-button"/>
+    <a class="btn btn-outline-dark" href="/validate" id="reset-button">Back</a>
 </form>
-<form action="\validate" method="get">
-    <input type="submit" value="Back"/>
-</form>
+    <div class="alert alert-danger alert-dismissible" style="display: <%=errorDisplay%>">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Error!</strong> <%=errorContext%>
+    </div>
+</div>
 </body>
 </html>

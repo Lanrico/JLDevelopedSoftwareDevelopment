@@ -1,15 +1,19 @@
 <%@ page language="java" pageEncoding="UTF-8"
          import="java.util.*, com.example.demo.model.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<!DOCTYPE html>
 <%
     List<StudentEntity> coursestudentlist=(List<StudentEntity>)session.getAttribute("coursestudentlist");
 %>
 <head>
     <title>Student of the Course</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </head>
-<body bgcolor="#D9DFAA">
-<table width="400" border=1>
+<body>
+<div class="mainContainer tableContainer">
+<table class="table table-striped">
     <caption>The Information of the students：</caption>
     <tr>
         <th>Student ID</th>
@@ -27,7 +31,8 @@
     </c:forEach>
 </table>
 <form action="\validate" method="get">
-    <input type="submit" value="Back"/>
+    <input class="btn btn-outline-dark centerButton" type="submit" value="Back"/>
 </form>
+</div>
 </body>
 </html>

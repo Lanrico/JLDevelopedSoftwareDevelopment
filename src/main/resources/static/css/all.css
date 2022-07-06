@@ -1,7 +1,7 @@
 table {
     caption-side: top;
 }
-.loginForm {
+.mainContainer {
     height: 350px;
     width: 500px;
     border: #4d4d4d solid 1px;
@@ -13,7 +13,7 @@ table {
     padding: 20px 40px;
 }
 
-.loginForm h2 {
+.mainContainer h2 {
     text-align: center;
 }
 
@@ -26,4 +26,20 @@ table {
 }
 #login-button{
     margin: 20px 0 15px 95px;
+}
+
+.centerButton{
+    display: block;
+    margin: 0 auto;
+}
+
+.tableContainer{
+    border: 0;
+    margin-top: 50px;
+    box-shadow: none;
+    width: 60%;
+}
+
+caption{
+    color: black;
 }
