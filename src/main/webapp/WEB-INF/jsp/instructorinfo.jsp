@@ -20,11 +20,11 @@
 <div class="mainContainer">
 <table class="table table-condensed">
     <tr>
-        <td>Student Number：</td>
+        <td>Instructor Number：</td>
         <td><%=ID%></td>
     </tr>
     <tr>
-        <td>Student Name：</td>
+        <td>Instructor Name：</td>
         <td><%=name%></td>
     </tr>
     <tr>
